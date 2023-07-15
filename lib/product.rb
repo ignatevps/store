@@ -1,8 +1,8 @@
 class Product
-  attr_reader :product_name, :price, :quantity
+  attr_reader :name, :price, :quantity
 
-  def initialize(params)
-    @product_name = name
+  def initialize(name, price, quantity)
+    @name = name
     @price = price
     @quantity = quantity
   end
