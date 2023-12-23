@@ -4,9 +4,9 @@ class Music < Product
   # reads product data from a file and passes it to the constructor
   # with the required keys
   def self.from_file(file_path)
-    lines = File.readlines(file_path, encoding: 'UTF-8').map { |l| l.chomp }
+    lines = File.readlines(file_path, encoding: 'UTF-8').map(&:chomp)
 
-    #also "self.new" or "Music.new", the same thing
+    # also "self.new" or "Music.new", the same thing
     new(
       name: lines[0],
       singer: lines[1],
@@ -31,6 +31,6 @@ class Music < Product
   def update
     super
     @genre = params[:genre] if params[:genre]
-    @singer = params[:singer] if params[:singer] 
+    @singer = params[:singer] if params[:singer]
   end
 end

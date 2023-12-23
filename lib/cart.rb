@@ -7,8 +7,8 @@ class Cart
   end
 
   def add_to_cart(product)
-    if product.quantity == 0
-      quantity.error(product)
+    if product.quantity.zero?
+      quantity_error(product)
     else
       product.quantity -= 1
       @products << product
@@ -18,7 +18,7 @@ class Cart
   end
 
   def quantity_error(product)
-    puts "Sorry, but we don't have any more #{(product)}"
+    puts "Sorry, but we don't have any more #{product}"
   end
 
   def successful_add(product)

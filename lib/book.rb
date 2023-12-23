@@ -1,14 +1,13 @@
 class Book < Product
   attr_accessor :author, :genre
-
   # reads product data from a file and passes it to the constructor
   # with the required keys
   def self.from_file(file_path)
-    lines = File.readlines(file_path, encoding: 'UTF-8').map { &:chomp }
+    lines = File.readlines(file_path, encoding: 'UTF-8').map(&:chomp)
 
     #also "self.new" or "Book.new", the same thing
     new(
-      name: lines[0],xs
+      name: lines[0],
       genre: lines[1],
       author: lines[2],
       price: lines[3].to_i,

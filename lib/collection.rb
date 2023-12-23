@@ -1,10 +1,10 @@
 class ProductCollection
   # Creating a constant with all products
   PRODUCT_TYPES = {
-    film: {dir: 'films', class: Film},
-    book: {dir: 'books', class: Book},
-    music: {dir: 'music', class: Music}
-  }
+    film: { dir: 'films', class: Film },
+    book: { dir: 'books', class: Book },
+    music: { dir: 'music', class: Music }
+  }.freeze
 
   def initialize(products = [])
     @products = products
@@ -16,10 +16,8 @@ class ProductCollection
   def self.from_dir(dir_path)
     products = []
 
-    PRODUCT_TYPES.each do |type, hash|
-
+    PRODUCT_TYPES.each do |_type, hash|
       product_dir = hash[:dir]
-
       product_class = hash[:class]
 
       Dir[dir_path + '/' + product_dir + '/*.md'].each do |path|
@@ -38,16 +36,15 @@ class ProductCollection
   def sort!(params)
     case params[:by]
     when :name
-      @products.sort_by! { |product| product.to_s }
+      @products.sort_by!(&:to_s)
     when :price
-      @products.sort_by! { |product| product.price }
+      @products.sort_by!(&:to_s)
     when :quantity
-      @products.sort_by! { |product| product.quantity }
+      @products.sort_by!(&:to_s)
     end
 
     # ascending sorting
     @products.reverse! if params[:order] == :asc
-    
     self
   end
 end
