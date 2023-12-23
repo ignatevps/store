@@ -4,11 +4,11 @@ class Book < Product
   # reads product data from a file and passes it to the constructor
   # with the required keys
   def self.from_file(file_path)
-    lines = File.readlines(file_path, encoding: 'UTF-8').map { |l| l.chomp }
+    lines = File.readlines(file_path, encoding: 'UTF-8').map { &:chomp }
 
     #also "self.new" or "Book.new", the same thing
     new(
-      name: lines[0], 
+      name: lines[0],xs
       genre: lines[1],
       author: lines[2],
       price: lines[3].to_i,
@@ -29,6 +29,6 @@ class Book < Product
   def update
     super
     @genre = params[:genre] if params[:genre]
-    @author = params[:author] if params[:author] 
+    @author = params[:author] if params[:author]
   end
 end
